@@ -8,12 +8,14 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @Component
+@Service
 @RequiredArgsConstructor
 public class WorkerService {
     private final SessionFactory sessionFactory;
@@ -26,22 +28,29 @@ public class WorkerService {
         return session.createQuery("select u from Worker u", Worker.class).getResultList();
     }
 
-
+    public Manufacture getManufactureByWorker(Long workerId){
+        return session.createQuery("from Worker where id =:id", Worker.class).setParameter("id", workerId).getSingleResult().getManufacture();
+    }
     @GetMapping("/worker")
     public List<Worker> getAllWorkers(){
         return getWorkers();
     }
 
     @PostMapping("/worker")
-    public Worker addWorker(@RequestBody Worker worker){
+    public Long addWorker(@RequestBody Worker worker){
         var transaction = session.beginTransaction();
         session.saveOrUpdate(worker);
         transaction.commit();
-        return worker;
+        return worker.getId();
     }
     @DeleteMapping("/worker")
     public Worker deleteWorker(@RequestBody Worker worker){
         session.remove(worker);
         return worker;
+    }
+
+    @GetMapping("/worker/{workerId}/manufacture")
+    public @ResponseBody Manufacture getWorkerManufacture(@PathVariable("workerId") Long workerId){
+        return getManufactureByWorker(workerId);
     }
 }

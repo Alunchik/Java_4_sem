@@ -4,16 +4,20 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name="Manufacture")
 @Getter
 @Setter
 public class Manufacture {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private Long id;
     @Column(name="address")
     private String address;
     @Column(name="name")
     private String name;
+    @OneToMany(mappedBy =  "manufacture")
+    private List<Worker> workerList;
 }

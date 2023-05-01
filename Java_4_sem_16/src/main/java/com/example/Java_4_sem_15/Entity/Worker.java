@@ -1,5 +1,6 @@
 package com.example.Java_4_sem_15.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,9 +11,12 @@ import lombok.Setter;
 @Setter
 public class Worker {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private Long id;
     private String firstName;
     private String lastName;
     private String middleName;
+    @JsonIgnore
+    @ManyToOne
+    public Manufacture manufacture;
 }
