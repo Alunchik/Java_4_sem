@@ -19,10 +19,11 @@ public class Config {
         config.setJdbcUrl("jdbc:postgresql://localhost:5432/Java_4_sem");
         config.setUsername("postgres");
         config.setPassword("admin");
+        config.setDriverClassName("org.postgresql.Driver");
         return new HikariDataSource(config);
     }
 
-    @Bean
+    @Bean(name="entityManagerFactory")
 public LocalSessionFactoryBean factoryBean(DataSource dataSource){
     LocalSessionFactoryBean sessionFactoryBean = new
             LocalSessionFactoryBean();
@@ -34,6 +35,7 @@ public LocalSessionFactoryBean factoryBean(DataSource dataSource){
         sessionFactoryBean.setHibernateProperties(properties);
         return sessionFactoryBean;
     }
+
     @Bean
     public PlatformTransactionManager
     platformTransactionManager(LocalSessionFactoryBean factoryBean){

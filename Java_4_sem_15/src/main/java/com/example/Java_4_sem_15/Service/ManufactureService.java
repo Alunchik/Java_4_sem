@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @Component
 @RequiredArgsConstructor
-public class ManifactureService {
+public class ManufactureService {
     private final SessionFactory sessionFactory;
     private Session session;
     @PostConstruct

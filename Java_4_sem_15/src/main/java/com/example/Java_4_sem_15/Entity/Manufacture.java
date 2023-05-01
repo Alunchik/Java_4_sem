@@ -5,14 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="Entity")
+@Table(name="Manufacture")
 @Getter
 @Setter
 public class Manufacture {
     @Id
-    @SequenceGenerator(name = "manufactures_seq", sequenceName =
-            "manufactures_sequence", allocationSize = 1)
-    @GeneratedValue(generator = "manufactures_seq", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(name="address")
     private String address;
