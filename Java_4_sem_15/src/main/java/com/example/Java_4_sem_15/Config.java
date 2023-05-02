@@ -13,35 +13,35 @@ import java.util.Properties;
 
 @Configuration
 public class Config {
-    @Bean
-    public HikariDataSource dataSource(){
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/Java_4_sem");
-        config.setUsername("postgres");
-        config.setPassword("admin");
-        config.setDriverClassName("org.postgresql.Driver");
-        return new HikariDataSource(config);
-    }
-
-    @Bean(name="entityManagerFactory")
-public LocalSessionFactoryBean factoryBean(DataSource dataSource){
-    LocalSessionFactoryBean sessionFactoryBean = new
-            LocalSessionFactoryBean();
-        sessionFactoryBean.setDataSource(dataSource);
-        sessionFactoryBean.setPackagesToScan("com.example.Java_4_sem_15");
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect",
-                "org.hibernate.dialect.PostgreSQLDialect");
-        sessionFactoryBean.setHibernateProperties(properties);
-        return sessionFactoryBean;
-    }
-
-    @Bean
-    public PlatformTransactionManager
-    platformTransactionManager(LocalSessionFactoryBean factoryBean){
-        HibernateTransactionManager transactionManager = new
-                HibernateTransactionManager();
-        transactionManager.setSessionFactory(factoryBean.getObject());
-        return transactionManager;
-    }
+//    @Bean
+//    public HikariDataSource dataSource(){
+//        HikariConfig config = new HikariConfig();
+//        config.setJdbcUrl("jdbc:postgresql://localhost:5432/Java_4_sem");
+//        config.setUsername("postgres");
+//        config.setPassword("admin");
+//        config.setDriverClassName("org.postgresql.Driver");
+//        return new HikariDataSource(config);
+//    }
+//
+//    @Bean(name="entityManagerFactory")
+//public LocalSessionFactoryBean factoryBean(DataSource dataSource){
+//    LocalSessionFactoryBean sessionFactoryBean = new
+//            LocalSessionFactoryBean();
+//        sessionFactoryBean.setDataSource(dataSource);
+//        sessionFactoryBean.setPackagesToScan("com.example");
+//        Properties properties = new Properties();
+//        properties.setProperty("hibernate.dialect",
+//                "org.hibernate.dialect.PostgreSQLDialect");
+//        sessionFactoryBean.setHibernateProperties(properties);
+//        return sessionFactoryBean;
+//    }
+//
+//    @Bean
+//    public PlatformTransactionManager
+//    platformTransactionManager(LocalSessionFactoryBean factoryBean){
+//        HibernateTransactionManager transactionManager = new
+//                HibernateTransactionManager();
+//        transactionManager.setSessionFactory(factoryBean.getObject());
+//        return transactionManager;
+//    }
 }

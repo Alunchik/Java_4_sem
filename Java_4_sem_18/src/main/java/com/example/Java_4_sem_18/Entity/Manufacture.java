@@ -1,11 +1,13 @@
-package com.example.Java_4_sem_15.Entity;
+package com.example.Java_4_sem_18.Entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
-@Table(name="Manufacture")
+@Table(name="manufactures")
 @Getter
 @Setter
 public class Manufacture {
@@ -16,4 +18,6 @@ public class Manufacture {
     private String address;
     @Column(name="name")
     private String name;
+    @OneToMany(mappedBy =  "manufacture")
+    private List<Worker> workerList;
 }

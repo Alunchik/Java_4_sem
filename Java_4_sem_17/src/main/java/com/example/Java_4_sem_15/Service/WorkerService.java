@@ -4,6 +4,9 @@ package com.example.Java_4_sem_15.Service;
 import com.example.Java_4_sem_15.Entity.Manufacture;
 import com.example.Java_4_sem_15.Entity.Worker;
 import jakarta.annotation.PostConstruct;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,12 +23,34 @@ import java.util.List;
 public class WorkerService {
     private final SessionFactory sessionFactory;
     private Session session;
+
+    CriteriaBuilder builder;
+    CriteriaQuery<Manufacture> workerCriteriaQuery;
+    Root<Manufacture> root;
     @PostConstruct
     void init(){
         session = sessionFactory.openSession();
+        builder = session.getCriteriaBuilder();
+        workerCriteriaQuery = builder.createQuery(Manufacture.class);
+        root = workerCriteriaQuery.from(Manufacture.class);
     }
     public List<Worker> getWorkers(){
         return session.createQuery("select u from Worker u", Worker.class).getResultList();
+    }
+
+    public List<Manufacture> getWorkersByLastName(String name){
+        workerCriteriaQuery.select(root).where(builder.equal(root.get("lastName"), name));
+        return session.createQuery(workerCriteriaQuery).getResultList();
+    }
+
+    public List<Manufacture> getWorkersByFirstName(String name){
+        workerCriteriaQuery.select(root).where(builder.equal(root.get("firstName"), name));
+        return session.createQuery(workerCriteriaQuery).getResultList();
+    }
+
+    public List<Manufacture> getWorkersByMiddleName(String name){
+        workerCriteriaQuery.select(root).where(builder.equal(root.get("middleName"), name));
+        return session.createQuery(workerCriteriaQuery).getResultList();
     }
 
     public Manufacture getManufactureByWorker(Long workerId){

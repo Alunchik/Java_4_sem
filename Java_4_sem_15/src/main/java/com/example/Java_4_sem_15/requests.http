@@ -1,0 +1,9 @@
+
+###
+POST http://localhost:8888/manufacture
+Content-type: application/json
+
+{
+    "address": "Koshkina, 17",
+    "Name": "Perekrestok"
+}

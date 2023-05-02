@@ -1,6 +1,6 @@
-package com.example.Java_4_sem_15.Service;
+package com.example.Java_4_sem_16.Service;
 
-import com.example.Java_4_sem_15.Entity.Manufacture;
+import com.example.Java_4_sem_16.Entity.Manufacture;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;

@@ -16,7 +16,7 @@ public class Config {
     @Bean
     public HikariDataSource dataSource(){
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/Java_4_sem");
+        config.setJdbcUrl("jdbc:postgresql://localhost:5432/java");
         config.setUsername("postgres");
         config.setPassword("admin");
         config.setDriverClassName("org.postgresql.Driver");

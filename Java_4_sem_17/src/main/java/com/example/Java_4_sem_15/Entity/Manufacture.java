@@ -7,12 +7,12 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name="Manufacture")
+@Table(name="manufactures")
 @Getter
 @Setter
 public class Manufacture {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="address")
     private String address;
